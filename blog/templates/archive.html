@@ -1,0 +1,36 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MAKOTO</title>
+</head>
+<body>
+<form action="/archive/" method="post">
+  {% csrf_token %}
+  Title:
+  <input type = text name = title ><br>
+  Body:
+  <textarea name = body rows = 3 cols = 60></textarea><br>
+
+  用户名: <input type="text" name="user"><br>
+  <input type = submit>
+</form>
+title:{{title}} <br>
+body:{{body}}<br>
+
+
+<hr>
+
+<h1>博客列表</h1>
+<ul>
+{% for post in posts %}
+<h2>{{post.title}}</h2>
+<p>{{post.timestamp}}</p>
+<p>{{post.body}}</p>
+<hr>
+{% endfor %}
+</ul>
+</body>
+</html>
